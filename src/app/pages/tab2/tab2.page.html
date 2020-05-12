@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>API - NEWS</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card *ngFor="let article of data?.articles" (click)="gotoarticle(article)">
+    <img [src]="article.urlToImage">
+    <ion-card-content>
+      <ion-card-title>
+        {{ article.title }}
+      </ion-card-title>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

@@ -1,0 +1,85 @@
+<form [formGroup] = "profile" (ngSubmit)="submitForm()">
+  <ion-card>
+  <ion-grid>
+  <ion-row>
+  <ion-col width-100>
+  <ion-list>
+    <ion-item>
+      <ion-label position="floating">Name:</ion-label>
+      <ion-input type="text" formControlName="nombre" autocapitalize input="text"></ion-input>
+    </ion-item>
+    <div *ngFor="let error of errorMessages.nombre">
+      <ng-container *ngIf="nombre.hasError(error.type) && (nombre.dirty || nombre.touched)">
+        <small class="error-message"> {{ error.message }} </small>
+      </ng-container>
+    </div>
+
+    <ion-item>
+      <ion-label position="floating">Apellido:</ion-label>
+      <ion-input type="text" formControlName="apellido" ></ion-input>
+    </ion-item>
+    <div *ngFor="let error of errorMessages.apellido">
+      <ng-container *ngIf="apellido.hasError(error.type) && (apellido.dirty || apellido.touched)">
+        <small class="error-message"> {{ error.message }} </small>
+      </ng-container>
+    </div>
+
+    <ion-item>
+      <ion-label position="floating">Email:</ion-label>
+      <ion-input type="text" formControlName="email" ></ion-input>
+    </ion-item>
+    <div *ngFor="let error of errorMessages.email">
+      <ng-container *ngIf="email.hasError(error.type) && (email.dirty || email.touched)">
+        <small class="error-message"> {{ error.message }} </small>
+      </ng-container>
+    </div>
+
+    <ion-item>
+      <ion-label position="floating">Fecha de Nacimiento: </ion-label>
+      <ion-datetime displayFormat="MMM DD YYYY" placeholder="--Select Date--" formControlName="calendar"></ion-datetime>
+    </ion-item>
+    <div *ngFor="let error of errorMessages.calendar">
+      <ng-container *ngIf="calendar.hasError(error.type) && (calendar.dirty || calendar.touched)">
+        <small class="error-message"> {{ error.message }} </small>
+      </ng-container>
+    </div>
+    
+    <ion-item>
+      <ion-label position="floating">Sexo:</ion-label>
+      <ion-select placeholder = "--Select Gender--" formControlName="gender">
+        <ion-select-option value="m">Male</ion-select-option>
+        <ion-select-option value="f">Female</ion-select-option>
+        <ion-select-option value="o">Other</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    
+    <div formGroupName = "password">
+      <ion-item>
+        <ion-label position="floating">Contraseña:</ion-label>
+        <ion-input type="password" formControlName="contra" ></ion-input>
+      </ion-item>
+      <div *ngFor="let error of errorMessages.contra">
+        <ng-container *ngIf="contra.hasError(error.type) && (contra.dirty || contra.touched)">
+          <small class="error-message"> {{ error.message }} </small>
+        </ng-container>
+      </div>
+
+      <ion-item>
+        <ion-label position="floating">Confirme Contraseña:</ion-label>
+        <ion-input type="password" formControlName="confirmacion" ></ion-input>
+      </ion-item>
+      <div *ngFor="let error of errorMessages.confirmacion">
+        <ng-container *ngIf="confirmacion.hasError(error.type) && (confirmacion.dirty || confirmacion.touched)">
+          <small class="error-message"> {{ error.message }} </small>
+        </ng-container>
+      </div>
+    </div>
+
+    <ion-button type="submit" [disabled]="!profile.valid">Submit</ion-button>
+  </ion-list>
+  </ion-col>
+  </ion-row>
+  </ion-grid>
+  </ion-card>
+</form>
